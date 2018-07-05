@@ -1,20 +1,24 @@
 package com.pirest.elas.idx.index;
 
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.List;
 
-public class Document {
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Document implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public enum DocType {
 		CHANNEL, VIDEO
 	}
 
+	@JsonProperty(value = "doc_type")
 	private DocType docType;
-	private Collection<String> ids;
 
-	public Document(DocType docType, Collection<String> ids) {
-		super();
-		this.docType = docType;
-		this.ids = ids;
-	}
+	private List<Object> ids;
 
 	public DocType getDocType() {
 		return docType;
@@ -24,12 +28,17 @@ public class Document {
 		this.docType = docType;
 	}
 
-	public Collection<String> getIds() {
+	public List<Object> getIds() {
 		return ids;
 	}
 
-	public void setIds(Collection<String> ids) {
+	public void setIds(List<Object> ids) {
 		this.ids = ids;
 	}
 
+	public Document(DocType docType, List<Object> ids) {
+		super();
+		this.docType = docType;
+		this.ids = ids;
+	}
 }
