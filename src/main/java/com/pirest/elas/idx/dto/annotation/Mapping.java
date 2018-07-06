@@ -5,6 +5,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import com.pirest.elas.idx.dto.analysis.BaseAnalyzer;
+
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mapping {
@@ -13,6 +15,8 @@ public @interface Mapping {
 	FieldType fieldType() default FieldType.IGNORE;
 
 	FieldIndex fieldIndex() default FieldIndex.IGNORE;
+
+	Class<? extends BaseAnalyzer>[] analyzer() default {};
 
 	enum FieldType {
 		STRING("string"), NESTED("nested"), LONG("long"), INTEGER("integer"), FLOAT("float"), DOUBLE("double"), BOOLEAN(

@@ -18,9 +18,13 @@ public class ChannelService {
 	public String indexChannel(String channelIds) {
 		String[] ids = channelIds.trim().split("\\s*,\\s*");
 		if (ids.length > 0) {
-			IndexRequest indexRequest = new IndexRequest(new Document(DocType.CHANNEL, Arrays.asList(ids)),
-					IndexType.INDEX);
-			rabbitTemplate.convertAndSend("channel.exchange", MapperUtil.toJson(indexRequest));
+			try {
+				IndexRequest indexRequest = new IndexRequest(new Document(DocType.CHANNEL, Arrays.asList(ids)),
+						IndexType.INDEX);
+				rabbitTemplate.convertAndSend("channel.exchange", MapperUtil.toJson(indexRequest));
+			} catch (Exception e) {
+
+			}
 		}
 		return String.format("Index request sent for channel: %s", channelIds);
 	}

@@ -17,7 +17,11 @@ import com.fasterxml.jackson.databind.util.NameTransformer;
 import com.pirest.elas.idx.dto.query.filter.CustomUnwrappingSerializer;
 import com.pirest.elas.idx.dto.query.filter.NotFilter;
 
-public class MapperUtil {
+/**
+ * Created by jongpark on 1/30/17.
+ */
+public class Mapper {
+
 	private static final ObjectMapper mapper = new ObjectMapper();
 
 	static {

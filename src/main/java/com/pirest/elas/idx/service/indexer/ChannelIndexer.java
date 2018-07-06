@@ -2,33 +2,44 @@ package com.pirest.elas.idx.service.indexer;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
-import com.pirest.elas.idx.dto.VideoDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.pirest.elas.idx.dto.Channel;
 import com.pirest.elas.idx.index.IndexRequest;
 import com.pirest.elas.idx.index.IndexResult;
+import com.pirest.elas.idx.repository.IndexRepository;
+import com.pirest.elas.idx.repository.VideoRepository;
 
-public class ChannelIndexer extends AbstractIndexer<VideoDto> {
+@Component
+public class ChannelIndexer extends AbstractIndexer<com.pirest.elas.idx.dto.Channel> {
+
+	@Autowired
+	private VideoRepository videoRepository;
+
+	public ChannelIndexer(IndexRepository indexRepository, ExecutorService executorService) {
+		super(executorService, com.pirest.elas.idx.dto.Channel.class);
+	}
 
 	@Override
 	protected IndexResult process(IndexRequest indexRequest) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected void index(String id) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void index(Collection<String> ids) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	protected void index(List<VideoDto> dtos) throws Exception {
+	protected void index(List<Channel> dtos) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
@@ -40,43 +51,43 @@ public class ChannelIndexer extends AbstractIndexer<VideoDto> {
 	}
 
 	@Override
-	protected void delete(Collection<String> ids) {
+	protected void delete(Collection<Object> ids) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	protected VideoDto get(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	protected List<VideoDto> get(Collection<String> ids) {
+	protected Channel get(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected VideoDto load(String id) {
+	protected List<Channel> get(Collection<Object> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected List<VideoDto> load(Collection<String> ids) {
+	protected Channel load(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected VideoDto lookup(String id) {
+	protected List<Channel> load(Collection<Object> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	protected List<VideoDto> lookup(Collection<String> ids) {
+	protected Channel lookup(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected List<Channel> lookup(Collection<Object> ids) {
 		// TODO Auto-generated method stub
 		return null;
 	}

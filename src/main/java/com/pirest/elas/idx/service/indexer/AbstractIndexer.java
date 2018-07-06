@@ -8,7 +8,7 @@ import java.util.concurrent.Future;
 
 import org.springframework.stereotype.Component;
 
-import com.pirest.elas.idx.index.Document;
+import com.pirest.elas.idx.dto.Document;
 import com.pirest.elas.idx.index.IndexRequest;
 import com.pirest.elas.idx.index.IndexResult;
 
@@ -19,6 +19,11 @@ public abstract class AbstractIndexer<T extends Document> implements Indexer {
 
 	protected ExecutorService executorService;
 
+	public AbstractIndexer(ExecutorService executorService, Class<T> dtoClass) {
+		this.dtoClass = dtoClass;
+		this.executorService = executorService; 
+	}
+	
 	public ExecutorService getExecutorService() {
 		return executorService;
 	}
@@ -50,17 +55,17 @@ public abstract class AbstractIndexer<T extends Document> implements Indexer {
 
 	protected abstract void delete(String id);
 
-	protected abstract void delete(Collection<String> ids);
+	protected abstract void delete(Collection<Object> ids);
 
 	protected abstract T get(String id);
 
-	protected abstract List<T> get(Collection<String> ids);
+	protected abstract List<T> get(Collection<Object> ids);
 
 	protected abstract T load(String id);
 
-	protected abstract List<T> load(Collection<String> ids);
+	protected abstract List<T> load(Collection<Object> ids);
 
 	protected abstract T lookup(String id);
 
-	protected abstract List<T> lookup(Collection<String> ids);
+	protected abstract List<T> lookup(Collection<Object> ids);
 }
